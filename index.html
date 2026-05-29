@@ -1,5 +1,4 @@
-<html>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -80,6 +79,113 @@
         }
 
         .autor {
-            font
-           
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .post-titulo {
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .post-texto {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .tag-verde {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        /* Campo de interação no fundo */
+        .interacao {
+            padding: 10px;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 8px;
+        }
+
+        .interacao input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .interacao button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .interacao button:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="smartphone-container">
+        <header>
+            Agrinho Conecta
+            <subtitle>Agro Forte, Futuro Sustentável</subtitle>
+        </header>
+
+        <div class="feed">
+            <div class="post">
+                <div class="post-header">
+                    <span class="autor">Seu João (Cascavel/PR)</span>
+                    <span>Há 10 min</span>
+                </div>
+                <div class="post-titulo">Dica: Cisterna Caseira para Irrigação</div>
+                <div class="post-texto">Consegui aproveitar a água da chuva do telhado do galpão usando calhas simples. Reduziu meu uso do poço artesiano pela metade nesta semana!</div>
+                <span class="tag-verde">#EconomiaDeAgua</span>
+            </div>
+
+            <div class="post">
+                <div class="post-header">
+                    <span class="autor">Dona Maria (Maringá/PR)</span>
+                    <span>Há 2 horas</span>
+                </div>
+                <div class="post-titulo">Dúvida sobre Adubo Orgânico</div>
+                <div class="post-texto">Alguém aqui na região usa compostagem com resto de poda e esterco para horta de tomates? Queria reduzir o uso de adubo químico. Deixem dicas!</div>
+                <span class="tag-verde">#SoloSaudavel</span>
+            </div>
+
+            <div class="post">
+                <div class="post-header">
+                    <span class="autor">Técnico Carlos (Emater)</span>
+                    <span>Há 5 horas</span>
+                </div>
+                <div class="post-titulo">Plantio Direto na Palha</div>
+                <div class="post-texto">Lembrando aos amigos produtores que manter a palhada no solo protege contra a erosão e mantém a umidade da terra nos dias mais quentes. É o agro forte cuidando do futuro!</div>
+                <span class="tag-verde">#Sustentabilidade</span>
+            </div>
+        </div>
+
+        <div class="interacao">
+            <input type="text" placeholder="Compartilhe uma dica ou dúvida...">
+            <button>Postar</button>
+        </div>
+    </div>
+
+</body>
 </html>
