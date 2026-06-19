@@ -33,6 +33,10 @@
             font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-site);
             color: var(--texto-principal);
@@ -65,7 +69,7 @@
             line-height: 1.6;
         }
 
-        /* Barra de Navegação Moderna */
+        /* Menu de Acesso Rápido */
         .abas-container {
             max-width: 500px;
             margin: -25px auto 40px auto;
@@ -78,70 +82,71 @@
             z-index: 10;
         }
 
-        .aba-btn {
+        .aba-link {
             flex: 1;
             padding: 14px 24px;
             text-align: center;
-            background: transparent;
-            border: none;
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--texto-secundario);
             cursor: pointer;
             border-radius: 100px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            text-decoration: none;
         }
 
-        .aba-btn i {
-            font-size: 1.1rem;
+        .aba-link:hover {
+            background: #f5f5f5;
+            color: var(--texto-principal);
         }
 
-        /* Estados Ativos com Transições Suaves */
-        .aba-btn.aba-forum-ativa {
-            color: var(--branco) !important;
-            background: var(--verde-sotaque) !important;
+        .aba-link.verde-btn {
+            background: var(--verde-claro);
+            color: #0f5132;
         }
 
-        .aba-btn.aba-vendas-ativa {
-            color: var(--branco) !important;
-            background: var(--azul-comercio) !important;
+        .aba-link.azul-btn {
+            background: #e0f2fe;
+            color: #0369a1;
         }
 
         .container {
-            max-width: 1040px;
+            max-width: 1100px;
             margin: 0 auto 60px auto;
             padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
         }
 
+        /* Estrutura das Seções Lado a Lado / Empilhadas */
         .conteudo-secao {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .conteudo-secao.ativa {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 30px;
+            padding-top: 20px;
         }
 
-        @media (min-width: 850px) {
-            .conteudo-secao.ativa {
-                grid-template-columns: 400px 1fr;
+        @media (min-width: 900px) {
+            .conteudo-secao {
+                grid-template-columns: 420px 1fr;
                 align-items: start;
             }
         }
 
-        /* Cards e Formulários Estilo Clean */
+        /* Formulários Premium */
         .box-publicar {
             background: var(--branco);
             padding: 30px;
             border-radius: var(--raio);
             box-shadow: var(--sombra);
             border: 1px solid var(--borda);
+            position: sticky;
+            top: 20px;
         }
 
         .box-publicar h2 {
@@ -183,10 +188,9 @@
         input:focus, select:focus, textarea:focus {
             border-color: #adb5bd;
             background-color: var(--branco);
-            box-shadow: 0 0 0 4px rgba(0,0,0,0.02);
         }
 
-        /* Botões Modernos */
+        /* Botões */
         .btn {
             background-color: var(--verde-sotaque);
             color: var(--branco);
@@ -206,14 +210,13 @@
 
         .btn:hover { 
             filter: brightness(1.1);
-            transform: translateY(-1px);
         }
         
         .btn-venda { 
             background-color: var(--azul-comercio); 
         }
 
-        /* Seções de Listagem */
+        /* Listagens */
         .coluna-feed {
             display: flex;
             flex-direction: column;
@@ -221,25 +224,23 @@
         }
 
         .titulo-coluna {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--texto-principal);
-            margin-bottom: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Design de Tópicos do Fórum */
+        /* Tópicos do Fórum */
         .topico {
             background: var(--branco);
             padding: 24px;
             border-radius: var(--raio);
             box-shadow: var(--sombra);
             border: 1px solid var(--borda);
-            border-left: 4px solid var(--verde-sotaque);
-            transition: transform 0.2s;
-        }
-
-        .topico:hover {
-            transform: translateY(-2px);
+            border-left: 5px solid var(--verde-sotaque);
         }
 
         .topico.tag-praga { 
@@ -265,7 +266,7 @@
         .autor { font-size: 0.85rem; color: var(--texto-secundario); font-weight: 500; }
 
         .topico h4 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--texto-principal);
@@ -277,10 +278,10 @@
             line-height: 1.6;
         }
 
-        /* Vitrine de Vendas Estilo Grid Minimalista */
+        /* Vitrine de Vendas */
         .vitrine {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 20px;
         }
 
@@ -293,20 +294,15 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 240px;
-            transition: transform 0.2s;
-        }
-
-        .produto-card:hover {
-            transform: translateY(-2px);
+            min-height: 250px;
+            border-top: 4px solid var(--azul-comercio);
         }
 
         .preco {
             font-size: 1.5rem;
-            color: var(--texto-principal);
+            color: var(--azul-comercio);
             font-weight: 700;
             margin: 16px 0;
-            letter-spacing: -0.5px;
         }
 
         .zap-btn {
@@ -322,15 +318,15 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: background 0.2s;
         }
-
+        
         .zap-btn:hover { background-color: #1ebe57; }
 
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Divisor Visual Elegante */
+        .divisor-secao {
+            border: none;
+            border-top: 2px dashed #e2e8f0;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -341,17 +337,23 @@
         <p>Agro forte, futuro sustentável: o equilíbrio que transforma a produção e protege a nossa terra.</p>
     </header>
 
-    <!-- Barra de Abas Estilo Pílula -->
+    <!-- Botões que usam Links Seguros de Rolagem (#) -->
     <div class="abas-container">
-        <button id="btn-forum" class="aba-btn aba-forum-ativa">
-            <i class="fa-regular fa-comments"></i> Dúvidas e Pragas
-        </button>
-        <button id="btn-vendas" class="aba-btn">
-            <i class="fa-solid fa-store"></i> Desapego / Vendas
-        </button>
+        <a href="#secao-forum" class="aba-link verde-btn">
+            <i class="fa-regular fa-comments"></i> Ir para Fórum
+        </a>
+        <a href="#secao-classificados" class="aba-link azul-btn">
+            <i class="fa-solid fa-store"></i> Ir para Vendas
+        </a>
     </div>
 
     <div class="container">
+        
+        <!-- SEÇÃO 1: FÓRUM (Sempre visível e acessível) -->
+        <section id="secao-forum" class="conteudo-secao">
+            <div class="box-publicar">
+                <h2><i class="fa-regular fa-pen-to-square" style="color: var(--verde-sotaque)"></i> Nova Publicação</h2>
+
         
 
 
