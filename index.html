@@ -4,193 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroForte: Comunidade & Desapego</title>
-    <!-- Fontes Premium e Ícones Estilizados -->
-    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
-
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root { 
-            --verde-base: #0b251a; 
-            --verde-neon: #38b000;
-            --verde-card: #143626;
-            --azul-base: #001d3d;
-            --azul-neon: #00b4d8;
-            --azul-card: #002855;
-            --bg-gradiente: #f4f7f5; 
+            --verde: #2d6a4f; 
+            --verde-escuro: #1b4332; 
+            --bg: #f8f9fa; 
             --branco: #ffffff; 
-            --texto-p: #0f172a; 
-            --texto-s: #475569; 
-            --laranja: #ff7b00; 
-            --raio: 24px;
-            --sombra-premium: 0 20px 40px rgba(15, 23, 42, 0.04);
+            --texto: #1a1d20; 
+            --laranja: #e65c00; 
+            --azul: #0077b6;
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-gradiente); color: var(--texto-p); -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg); color: var(--texto); }
         
-        /* Header Dashboard Futurista */
         header { 
-            background: radial-gradient(circle at top right, #1b4332, var(--verde-base));
+            background: linear-gradient(135deg, var(--verde-escuro), #081c15); 
             color: var(--branco); 
-            padding: 80px 24px 90px 24px; 
-            text-align: center;
-            position: relative;
+            padding: 50px 20px; 
+            text-align: center; 
         }
-        header::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 30px;
-            background: linear-gradient(to top, var(--bg-gradiente), transparent);
-        }
-        header h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 12px; }
-        header p { font-size: 1.2rem; opacity: 0.85; max-width: 600px; margin: 0 auto; font-weight: 400; }
+        header h1 { font-size: 2.4rem; margin-bottom: 8px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
 
-        /* Flutuador de Acesso Rápido Estilo App */
-        .menu-flutuante {
+        /* Barra de atalhos rápidos de rolagem */
+        .menu-rolagem {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin: -32px auto 40px auto;
-            max-width: 520px;
+            gap: 15px;
+            margin: -22px auto 30px auto;
+            max-width: 450px;
             position: relative;
-            z-index: 100;
-            padding: 0 16px;
+            z-index: 10;
         }
-        .btn-app {
+        .btn-rolar {
             flex: 1;
-            padding: 16px 24px;
+            padding: 12px;
             text-align: center;
             text-decoration: none;
             font-weight: 700;
-            border-radius: 100px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--branco);
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: white;
             font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
-        .btn-app.v-app { background: linear-gradient(135deg, #2d6a4f, var(--verde-base)); box-shadow: 0 10px 25px rgba(45, 106, 79, 0.3); }
-        .btn-app.a-app { background: linear-gradient(135deg, #00563b, var(--azul-base)); box-shadow: 0 10px 25px rgba(0, 86, 59, 0.2); }
-        .btn-app:hover { transform: translateY(-4px); filter: brightness(1.2); }
+        .btn-rolar.v-btn { background-color: var(--verde); }
+        .btn-rolar.a-btn { background-color: var(--azul); }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px 24px; }
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 20px 60px 20px; 
+        }
 
-        /* Grade Dashboard */
-        .painel-grid {
+        .secao-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 80px;
-            align-items: start;
-        }
-        @media (min-width: 950px) {
-            .painel-grid { grid-template-columns: 420px 1fr; }
-        }
-
-        /* Envoltório de Inputs Limpos */
-        .glass-card {
+            gap: 30px;
+            margin-bottom: 60px;
             background: var(--branco);
-            padding: 36px;
-            border-radius: var(--raio);
-            box-shadow: var(--sombra-premium);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            position: sticky;
-            top: 40px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e9ecef;
         }
-        .glass-card h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; letter-spacing: -0.5px; }
         
-        .form-group { margin-bottom: 22px; }
-        label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--texto-s); }
-        
-        input, select, textarea { 
-            width: 100%; padding: 16px; border: 1.5px solid #e2e8f0; border-radius: 14px; 
-            font-size: 0.95rem; outline: none; background: #f8fafc; transition: all 0.2s; color: var(--texto-p);
+        @media (min-width: 850px) {
+            .secao-layout { grid-template-columns: 380px 1fr; align-items: start; }
         }
-        input:focus, select:focus, textarea:focus { border-color: #cbd5e1; background: var(--branco); box-shadow: 0 0 0 4px rgba(203, 213, 225, 0.2); }
-        
-        .btn-action { 
-            color: var(--branco); padding: 16px; border: none; border-radius: 14px; 
-            font-size: 1rem; font-weight: 700; cursor: pointer; width: 100%; 
-            display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;
-        }
-        .btn-action.v-bg { background: linear-gradient(135deg, #1b4332, #2d6a4f); }
-        .btn-action.a-bg { background: linear-gradient(135deg, #00563b, #0077b6); }
-        .btn-action:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-        /* Alimentação de Feed Estilo Timeline */
-        .feed-container { display: flex; flex-direction: column; gap: 24px; }
-        .feed-container h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .formulario h2 { font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; font-size: 0.95rem; outline: none; background: #fdfdfd; }
         
-        .premium-post { 
-            background: var(--branco); padding: 28px; border-radius: var(--raio); 
-            box-shadow: var(--sombra-premium); border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: all 0.3s ease;
-        }
-        .premium-post:hover { transform: translateY(-4px); box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08); }
-        
-        .post-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 0.85rem; color: var(--texto-s); font-weight: 500; }
-        .badge-ui { padding: 6px 14px; border-radius: 100px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .ui-praga { background: #fff3cd; color: #7a5e00; }
-        .ui-plantio { background: #e2f0d9; color: #2d6a4f; }
+        .btn-enviar { color: var(--branco); padding: 12px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; }
+        .btn-enviar.v-cor { background: var(--verde); }
+        .btn-enviar.a-cor { background: var(--azul); }
 
-        .premium-post h4 { font-size: 1.25rem; font-weight: 700; color: var(--texto-p); letter-spacing: -0.3px; }
-        .premium-post p { font-size: 1rem; color: var(--texto-s); margin-top: 8px; line-height: 1.6; }
+        /* Lista de tópicos e produtos */
+        .coluna-lista { display: flex; flex-direction: column; gap: 15px; }
+        .coluna-lista h3 { font-size: 1.25rem; margin-bottom: 5px; }
+        
+        .card-topico { background: #fafafa; padding: 20px; border-radius: 12px; border: 1px solid #eee; border-left: 5px solid var(--verde); }
+        .card-topico.tag-praga { border-left-color: var(--laranja); }
+        .card-topico-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; color: #6c757d; }
+        
+        .badge { padding: 4px 10px; border-radius: 100px; font-weight: 600; font-size: 0.75rem; }
+        .bg-praga { background: #fff3cd; color: #664d03; }
+        .bg-plantio { background: #d1e7dd; color: #0f5132; }
 
-        /* Mosaico de Cards para Produtos */
-        .mosaico-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
-        .card-market { 
-            background: var(--branco); border-radius: var(--raio); box-shadow: var(--sombra-premium); 
-            border: 1px solid rgba(226, 232, 240, 0.8); padding: 28px; display: flex; 
-            flex-direction: column; justify-content: space-between; min-height: 280px; transition: all 0.3s;
-        }
-        .card-market:hover { transform: translateY(-4px); }
-        .tag-vendedor { font-size: 0.85rem; color: var(--texto-s); font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        .tag-vendedor i { color: #94a3b8; }
+        .vitrine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        .card-produto { background: #fafafa; border-radius: 12px; border: 1px solid #eee; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; border-top: 4px solid var(--azul); }
+        .preco { font-size: 1.35rem; color: var(--azul); font-weight: 700; margin: 12px 0; }
+        .zap-link { background-color: #25d366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: block; }
         
-        .preco-tag { font-size: 1.6rem; color: var(--texto-p); font-weight: 800; margin: 20px 0; letter-spacing: -1px; }
-        .whatsapp-action { 
-            background-color: #25d366; color: var(--branco); text-align: center; padding: 14px; 
-            border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 0.95rem; 
-            display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;
-        }
-        .whatsapp-action:hover { background-color: #1ebe57; }
-        
-        .linha-estilizada { border: none; height: 1px; background: linear-gradient(to right, transparent, #e2e8f0, transparent); margin: 60px 0; }
+        .divisor { border: none; border-top: 2px dashed #cbd5e1; margin: 40px 0; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>🌱 AgroForte</h1>
-        <p>Agro forte, futuro sustentável: o equilíbrio inteligente que transforma o campo e preserva a nossa essência.</p>
+        <p>Agro forte, futuro sustentável: equilíbrio que transforma</p>
     </header>
 
-    <!-- Botões de ancoragem rápida superiores -->
-    <div class="menu-flutuante">
-        <a href="#comunidade-painel" class="btn-app v-app"><i class="fa-regular fa-comment-dots"></i> Central da Comunidade</a>
-        <a href="#mercado-painel" class="btn-app a-app"><i class="fa-solid fa-basket-shopping"></i> Painel de Desapegos</a>
+    <!-- Botões de navegação rápida por rolagem de página -->
+    <div class="menu-rolagem">
+        <a href="#ajuda-comunidade" class="btn-rolar v-btn">💬 Ajuda da Comunidade</a>
+        <a href="#vendas-trocas" class="btn-rolar a-btn">🛒 Vendas e Trocas</a>
     </div>
 
     <div class="container">
 
-        <!-- PAINEL 1: CENTRAL DA COMUNIDADE -->
-        <section id="comunidade-painel" class="painel-grid">
-            <div class="glass-card" style="border-top: 5px solid #2d6a4f;">
-                <h2><i class="fa-regular fa-paper-plane" style="color: #2d6a4f;"></i> Nova Postagem</h2>
+        <!-- SEÇÃO 1: AJUDA DA COMUNIDADE (FÓRUM) -->
+        <section id="ajuda-comunidade" class="secao-layout" style="border-top: 4px solid var(--verde);">
+            <div class="formulario">
+                <h2 style="color: var(--verde-escuro);">💬 Nova Publicação</h2>
                 <form id="forumForm">
-                    <div class="form-group"><label>Nome do Produtor</label><input type="text" id="autor" placeholder="Ex: Lucas Ribeiro" required></div>
+                    <div class="form-group"><label>Seu Nome</label><input type="text" id="autor" placeholder="Ex: João Silva" required></div>
                     <div class="form-group">
-                        <label>Segmento</label>
+                        <label>Categoria</label>
                         <select id="categoria" required>
-                            <option value="plantio">🌱 Cultivo Sustentável / Manejo</option>
-                            <option value="praga">🐛 Alerta de Pragas / Doenças</option>
+                            <option value="plantio">🌱 Cultivo Sustentável</option>
+                            <option value="praga">🐛 Problemas com Pragas</option>
                         </select>
                     </div>
-                    <div class="form-group"><label>Título do Problema</label><input type="text" id="titulo" placeholder="Ex: Manchas nas folhas do tomateiro" required></div>
-                    <div class="form-group"><label>O que está acontecendo?</label><textarea id="conteudo" rows="4" placeholder="Descreva os sintomas de forma clara..." required></textarea></div>
+                    <div class="form-group"><label>Sua Pergunta</label><input type="text" id="titulo" placeholder="Ex: Como conter pulgões?" required></div>
+                    <div class="form-group"><label>Explicação Completa</label><textarea id="conteudo" rows="4" placeholder="Descreva os detalhes..." required></textarea></div>
+                    <button type="submit" class="btn-enviar v-cor">Publicar Pergunta</button>
+                </form>
+            </div>
+
+            <div class="coluna-lista">
+                <h3 style="color: var(--verde-escuro);">Perguntas da Comunidade</h3>
+                <div id="forumFeed"></div>
+            </div>
+        </section>
+
+        <hr class="divisor">
+
+        <!-- SEÇÃO 2: VENDAS E TROCAS -->
+        <section id="vendas-trocas" class="secao-layout" style="border-top: 4px solid var(--azul);">
+            <div class="formulario">
+                <h2 style="color: var(--azul);">🛒 Cadastrar Item</h2>
+                <form id="vendasForm">
+                    <div class="form-group"><label>Seu Nome</label><input type="text" id="vendedor" placeholder="Ex: Maria Souza" required></div>
+                    <div class="form-group"><label>Produto ou Insumo</label><input type="text" id="produto" placeholder="Ex: Sobra de adubo orgânico" required></div>
+                    <div class="form-group"><label>Preço ou Proposta de Troca</label><input type="text" id="preco" placeholder="Ex: 45,00 ou Troca" required></div>
+                    <div class="form-group"><label>WhatsApp (com DDD, apenas números)</label><input type="tel" id="whatsapp" placeholder="Ex: 11999999999" required></div>
+                    <div class="form-group"><label>Condições do Item</label><textarea id="descProduto" rows="3" placeholder="Detalhes sobre o produto..." required></textarea></div>
+                    <button type="submit" class="btn-enviar a-cor">Anunciar Desapego</button>
+                </form>
+            </div>
+
+            <div class="coluna-lista">
+                <h3 style="color: var(--azul);">Itens para Venda e Troca</h3>
+                <div class="vitrine-grid" id="vitrineFeed"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Banco de dados salvo localmente
+        let posts = JSON.parse(localStorage.getItem('agro_posts')) || [
+            { autor: "Carlos Mendes", categoria: "praga", titulo: "Lagartas atacando o Maracujá", conteudo: "Percebi pequenas lagartas escuras comendo os ramos novos. Algum manejo biológico recomendado para conter?" }
+        ];
+
+        let produtos = JSON.parse(localStorage.getItem('agro_produtos')) || [
+            { vendedor: "Roberto Silva", produto: "Pulverizador Costal 20L", preco: "120,00", whatsapp: "11999999999", desc: "Equipamento revisado, bicos limpos, ideal para hortas." }
+        ];
+
+        function renderizarForum() {
+            const feed = document.getElementById('forumFeed');
+            feed.innerHTML = '';
+            posts.slice().reverse().forEach(post => {
+                const isPraga = post.categoria === 'praga';
+                feed.innerHTML += `
+                    <div class="card-topico ${isPraga ? 'tag-praga' : ''}">
+                        <div class="card-topico-header">
+                            <span>Por: <strong>${post.autor}</strong></span>
+                            <span class="badge ${isPraga ? 'bg-praga' : 'bg-plantio'}">${isPraga ? '🐛 Praga' : '🌱 Cultivo'}</span>
+                        </div>
+                        <h4 style="font-weight:700;">${post.titulo}</h4>
+                        <p style="color:#4a4a4a; font-size:0.95rem; margin-top:6px; line-height:1.5;">${post.conteudo}</p>
+                    </div>`;
+            });
+        }
+
+        function renderizarVitrine() {
 
 
 
