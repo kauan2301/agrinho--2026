@@ -4,295 +4,355 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroForte: Comunidade & Desapego</title>
+    <!-- Importação de Fonte Moderna e Ícones -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+
     <style>
         :root {
-            --verde-forte: #2e7d32;
-            --verde-claro: #81c784;
-            --solo: #f4f6f4;
-            --texto-escuro: #2c3e50;
+            --verde-primario: #1b4332;
+            --verde-sotaque: #2d6a4f;
+            --verde-claro: #d8f3dc;
+            --bg-site: #f8f9fa;
+            --texto-principal: #1a1d20;
+            --texto-secundario: #5c636a;
             --branco: #ffffff;
-            --laranja-alerta: #e67e22;
-            --azul-comercio: #2980b9;
+            --laranja-alerta: #e65c00;
+            --azul-comercio: #0077b6;
+            --borda: #e9ecef;
+            --sombra: 0 8px 30px rgba(0, 0, 0, 0.04);
+            --raio: 16px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
         }
 
         body {
-            background-color: var(--solo);
-            color: var(--texto-escuro);
+            background-color: var(--bg-site);
+            color: var(--texto-principal);
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* Header Premium */
         header {
-            background: linear-gradient(135deg, var(--verde-forte), #1b5e20);
+            background: linear-gradient(135deg, var(--verde-primario), #081c15);
             color: var(--branco);
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        header h1 { font-size: 2.2rem; margin-bottom: 10px; }
-        header p { font-size: 1.1rem; opacity: 0.9; }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
 
-        /* Abas superiores consertadas */
-        .abas {
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Barra de Navegação Moderna */
+        .abas-container {
+            max-width: 500px;
+            margin: -25px auto 40px auto;
+            background: var(--branco);
+            padding: 6px;
+            border-radius: 100px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             display: flex;
-            justify-content: center;
-            background: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
         }
 
         .aba-btn {
             flex: 1;
-            max-width: 300px;
-            padding: 18px;
+            padding: 14px 24px;
             text-align: center;
-            background: #fdfdfd;
+            background: transparent;
             border: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #7f8c8d;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--texto-secundario);
             cursor: pointer;
-            border-bottom: 4px solid #eee;
-            transition: all 0.2s;
+            border-radius: 100px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .aba-btn:hover {
-            background: #f5f5f5;
+        .aba-btn i {
+            font-size: 1.1rem;
         }
 
-        /* Cores das abas quando ativas */
-        #btn-forum.ativa {
-            color: var(--verde-forte);
-            border-bottom: 4px solid var(--verde-forte);
-            background: #fff;
+        /* Estados Ativos com Transições Suaves */
+        .aba-btn.aba-forum-ativa {
+            color: var(--branco) !important;
+            background: var(--verde-sotaque) !important;
         }
 
-        #btn-vendas.ativa {
-            color: var(--azul-comercio);
-            border-bottom: 4px solid var(--azul-comercio);
-            background: #fff;
+        .aba-btn.aba-vendas-ativa {
+            color: var(--branco) !important;
+            background: var(--azul-comercio) !important;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto 50px auto;
-            padding: 0 20px;
+            max-width: 1040px;
+            margin: 0 auto 60px auto;
+            padding: 0 24px;
         }
 
-        /* Sistema de exibição robusto */
         .conteudo-secao {
             display: none;
+            animation: fadeIn 0.4s ease;
         }
 
-        /* Formulários */
+        .conteudo-secao.ativa {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 850px) {
+            .conteudo-secao.ativa {
+                grid-template-columns: 400px 1fr;
+                align-items: start;
+            }
+        }
+
+        /* Cards e Formulários Estilo Clean */
         .box-publicar {
             background: var(--branco);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+            border: 1px solid var(--borda);
         }
 
         .box-publicar h2 {
-            font-size: 1.4rem;
-            color: var(--verde-forte);
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--texto-principal);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--texto-principal);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
+            padding: 14px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--texto-principal);
             outline: none;
+            background-color: #fdfdfd;
+            transition: all 0.2s;
         }
 
         input:focus, select:focus, textarea:focus {
-            border-color: var(--verde-claro);
+            border-color: #adb5bd;
+            background-color: var(--branco);
+            box-shadow: 0 0 0 4px rgba(0,0,0,0.02);
         }
 
+        /* Botões Modernos */
         .btn {
-            background-color: var(--verde-forte);
+            background-color: var(--verde-sotaque);
             color: var(--branco);
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
             width: 100%;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .btn:hover { background-color: #1b5e20; }
-        .btn-venda { background-color: var(--azul-comercio); }
-        .btn-venda:hover { background-color: #1f618d; }
-
-        /* Fórum */
-        .feed { display: flex; flex-direction: column; gap: 20px; }
+        .btn:hover { 
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
         
+        .btn-venda { 
+            background-color: var(--azul-comercio); 
+        }
+
+        /* Seções de Listagem */
+        .coluna-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .titulo-coluna {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--texto-principal);
+            margin-bottom: 4px;
+        }
+
+        /* Design de Tópicos do Fórum */
         .topico {
             background: var(--branco);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--verde-forte);
+            padding: 24px;
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+            border: 1px solid var(--borda);
+            border-left: 4px solid var(--verde-sotaque);
+            transition: transform 0.2s;
         }
 
-        .topico.tag-praga { border-left-color: var(--laranja-alerta); }
+        .topico:hover {
+            transform: translateY(-2px);
+        }
+
+        .topico.tag-praga { 
+            border-left-color: var(--laranja-alerta); 
+        }
         
         .topico-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .badge {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: white;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        .bg-praga { background-color: var(--laranja-alerta); }
-        .bg-plantio { background-color: var(--verde-forte); }
-        .autor { font-size: 0.85rem; color: #7f8c8d; }
+        .bg-praga { background-color: #fff3cd; color: #664d03; }
+        .bg-plantio { background-color: #d1e7dd; color: #0f5132; }
+        .autor { font-size: 0.85rem; color: var(--texto-secundario); font-weight: 500; }
 
-        /* Vitrine de Vendas */
+        .topico h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--texto-principal);
+        }
+
+        .topico p {
+            font-size: 0.95rem;
+            color: var(--texto-secundario);
+            line-height: 1.6;
+        }
+
+        /* Vitrine de Vendas Estilo Grid Minimalista */
         .vitrine {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
 
         .produto-card {
             background: var(--branco);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            padding: 20px;
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+            border: 1px solid var(--borda);
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-top: 5px solid var(--azul-comercio);
+            min-height: 240px;
+            transition: transform 0.2s;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-2px);
         }
 
         .preco {
-            font-size: 1.4rem;
-            color: var(--azul-comercio);
-            font-weight: bold;
-            margin: 10px 0;
+            font-size: 1.5rem;
+            color: var(--texto-principal);
+            font-weight: 700;
+            margin: 16px 0;
+            letter-spacing: -0.5px;
         }
 
         .zap-btn {
             background-color: #25d366;
             color: white;
             text-align: center;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 12px;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
         }
 
-        .zap-btn:hover { background-color: #128c7e; }
+        .zap-btn:hover { background-color: #1ebe57; }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🌱 AgroForte Sustentável</h1>
-        <p>Tire dúvidas sobre cultivo e negocie itens que você não usa mais!</p>
+        <h1>🌱 AgroForte</h1>
+        <p>Agro forte, futuro sustentável: o equilíbrio que transforma a produção e protege a nossa terra.</p>
     </header>
 
-    <!-- Cliques configurados diretamente nos botões -->
-    <div class="abas">
-        <button id="btn-forum" class="aba-btn ativa" onclick="mudarAba('forum')">💬 Dúvidas e Pragas</button>
-        <button id="btn-vendas" class="aba-btn" onclick="mudarAba('vendas')">🛒 Desapego / Vendas</button>
+    <!-- Barra de Abas Estilo Pílula -->
+    <div class="abas-container">
+        <button id="btn-forum" class="aba-btn aba-forum-ativa">
+            <i class="fa-regular fa-comments"></i> Dúvidas e Pragas
+        </button>
+        <button id="btn-vendas" class="aba-btn">
+            <i class="fa-solid fa-store"></i> Desapego / Vendas
+        </button>
     </div>
 
     <div class="container">
         
-        <!-- SEÇÃO 1: FÓRUM (Fica visível por padrão) -->
-        <div id="secao-forum" class="conteudo-secao" style="display: block;">
-            <div class="box-publicar">
-                <h2>💬 Nova Dúvida ou Dica</h2>
-                <form id="forumForm">
-                    <div class="form-group">
-                        <label for="autor">Seu Nome:</label>
-                        <input type="text" id="autor" placeholder="Ex: João Silva" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoria">Categoria:</label>
-                        <select id="categoria" required>
-                            <option value="plantio">🌱 Como Plantar / Cultivo</option>
-                            <option value="praga">🐛 Combate a Pragas e Doenças</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="titulo">Assunto / Pergunta:</label>
-                        <input type="text" id="titulo" placeholder="Ex: Como acabar com pulgão na couve?" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="conteudo">Detalhes do problema:</label>
-                        <textarea id="conteudo" placeholder="Descreva o que está acontecendo..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Publicar no Fórum</button>
-                </form>
-            </div>
 
-            <h3 style="margin-bottom: 15px; color: var(--verde-forte);">Perguntas da Comunidade</h3>
-            <div class="feed" id="forumFeed"></div>
-        </div>
-
-        <!-- SEÇÃO 2: CLASSIFICADOS / VENDAS -->
-        <div id="secao-classificados" class="conteudo-secao">
-            <div class="box-publicar" style="border-top: 4px solid var(--azul-comercio);">
-                <h2 style="color: var(--azul-comercio);">🛒 Anunciar um Desapego</h2>
-                <form id="vendasForm">
-                    <div class="form-group">
-                        <label for="vendedor">Seu Nome:</label>
-                        <input type="text" id="vendedor" placeholder="Ex: Maria Souza" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="produto">Item para Vender ou Trocar:</label>
-                        <input type="text" id="produto" placeholder="Ex: Enxada antiga / Sobras de adubo orgânico" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="preco">Preço (R$):</label>
-                        <input type="text" id="preco" placeholder="Ex: 45,00 (ou digite Troca)" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="whatsapp">Seu Celular / WhatsApp (Apenas números com DDD):</label>
-                        <input type="tel" id="whatsapp" placeholder="Ex: 11999999999" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="descProduto">Condição do Item / Detalhes:</label>
-                        <textarea id="descProduto" placeholder="Descreva o estado do produto e região de entrega..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-venda">Colocar à Venda</button>
-                </form>
-            </div>
-
-            <h3 style="margin-bottom: 15px; color: var(--azul-comercio);">Itens Disponíveis</h3>
 
 
