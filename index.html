@@ -3,90 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroForte: Vendas</title>
-    <link rel="preconnect" href="https://googleapis.com">
+    <title>AgroForte: Comunidade & Desapego</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        :root { --azul: #0077b6; --azul-escuro: #03045e; --bg: #f8f9fa; --branco: #ffffff; --texto: #1a1d20; }
+        :root { 
+            --verde: #2d6a4f; 
+            --verde-escuro: #1b4332; 
+            --bg: #f8f9fa; 
+            --branco: #ffffff; 
+            --texto: #1a1d20; 
+            --laranja: #e65c00; 
+            --azul: #0077b6;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        html { scroll-behavior: smooth; }
         body { background-color: var(--bg); color: var(--texto); }
-        header { background: linear-gradient(135deg, var(--azul-escuro), #023e8a); color: var(--branco); padding: 40px 20px; text-align: center; }
-        header h1 { font-size: 2.2rem; margin-bottom: 8px; }
         
-        /* Menu de Navegação Superior */
-        .menu-navegacao { display: flex; justify-content: center; background: var(--branco); box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .menu-link { flex: 1; max-width: 250px; padding: 16px; text-align: center; text-decoration: none; font-weight: 700; font-size: 1rem; color: #7f8c8d; }
-        .menu-link.ativo { color: var(--azul); border-bottom: 4px solid var(--azul); background: #f0f8ff; }
-        .menu-link:hover { background: #f9f9f9; }
+        header { 
+            background: linear-gradient(135deg, var(--verde-escuro), #081c15); 
+            color: var(--branco); 
+            padding: 50px 20px; 
+            text-align: center; 
+        }
+        header h1 { font-size: 2.4rem; margin-bottom: 8px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
 
-        .container { max-width: 1000px; margin: 0 auto 50px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr; gap: 30px; }
-        @media (min-width: 800px) { .container { grid-template-columns: 380px 1fr; align-items: start; } }
+        /* Barra de atalhos rápidos de rolagem */
+        .menu-rolagem {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: -22px auto 30px auto;
+            max-width: 450px;
+            position: relative;
+            z-index: 10;
+        }
+        .btn-rolar {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: white;
+            font-size: 0.95rem;
+        }
+        .btn-rolar.v-btn { background-color: var(--verde); }
+        .btn-rolar.a-btn { background-color: var(--azul); }
+
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        .secao-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+            background: var(--branco);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e9ecef;
+        }
         
-        .box-card { background: var(--branco); padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #e9ecef; }
-        .box-card h2 { font-size: 1.25rem; margin-bottom: 20px; color: var(--azul-escuro); }
+        @media (min-width: 850px) {
+            .secao-layout { grid-template-columns: 380px 1fr; align-items: start; }
+        }
+
+        .formulario h2 { font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
-        input, textarea { width: 100%; padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; font-size: 0.95rem; outline: none; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; font-size: 0.95rem; outline: none; background: #fdfdfd; }
         
-        .btn { background: var(--azul); color: var(--branco); padding: 12px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; }
-        .vitrine { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; }
-        .produto-card { background: var(--branco); border-radius: 12px; border: 1px solid #e9ecef; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; border-top: 4px solid var(--azul); }
+        .btn-enviar { color: var(--branco); padding: 12px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; }
+        .btn-enviar.v-cor { background: var(--verde); }
+        .btn-enviar.a-cor { background: var(--azul); }
+
+        /* Lista de tópicos e produtos */
+        .coluna-lista { display: flex; flex-direction: column; gap: 15px; }
+        .coluna-lista h3 { font-size: 1.25rem; margin-bottom: 5px; }
+        
+        .card-topico { background: #fafafa; padding: 20px; border-radius: 12px; border: 1px solid #eee; border-left: 5px solid var(--verde); }
+        .card-topico.tag-praga { border-left-color: var(--laranja); }
+        .card-topico-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; color: #6c757d; }
+        
+        .badge { padding: 4px 10px; border-radius: 100px; font-weight: 600; font-size: 0.75rem; }
+        .bg-praga { background: #fff3cd; color: #664d03; }
+        .bg-plantio { background: #d1e7dd; color: #0f5132; }
+
+        .vitrine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        .card-produto { background: #fafafa; border-radius: 12px; border: 1px solid #eee; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; border-top: 4px solid var(--azul); }
         .preco { font-size: 1.35rem; color: var(--azul); font-weight: 700; margin: 12px 0; }
-        .zap-btn { background-color: #25d366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: block; }
+        .zap-link { background-color: #25d366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: block; }
+        
+        .divisor { border: none; border-top: 2px dashed #cbd5e1; margin: 40px 0; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🛒 Mercado AgroForte</h1>
-        <p>Negocie equipamentos, mudas e insumos que você não usa mais</p>
+        <h1>🌱 AgroForte</h1>
+        <p>Agro forte, futuro sustentável: equilíbrio que transforma</p>
     </header>
 
-    <!-- Menu que volta para o arquivo principal -->
-    <div class="menu-navegacao">
-        <a href="index.html" class="menu-link">💬 Dúvidas e Pragas</a>
-        <a href="vendas.html" class="menu-link ativo">🛒 Desapego / Vendas</a>
+    <!-- Botões de navegação rápida por rolagem de página -->
+    <div class="menu-rolagem">
+        <a href="#ajuda-comunidade" class="btn-rolar v-btn">💬 Ajuda da Comunidade</a>
+        <a href="#vendas-trocas" class="btn-rolar a-btn">🛒 Vendas e Trocas</a>
     </div>
 
     <div class="container">
-        <div class="box-card">
-            <h2>🛒 Cadastrar Item</h2>
-            <form id="vendasForm">
-                <div class="form-group"><label>Seu Nome</label><input type="text" id="vendedor" placeholder="Ex: Maria" required></div>
-                <div class="form-group"><label>Item</label><input type="text" id="produto" placeholder="Ex: Enxada ou Adubo" required></div>
-                <div class="form-group"><label>Preço ou Troca</label><input type="text" id="preco" placeholder="Ex: 45,00" required></div>
-                <div class="form-group"><label>WhatsApp (com DDD)</label><input type="tel" id="whatsapp" placeholder="Ex: 11999999999" required></div>
-                <div class="form-group"><label>Detalhes</label><textarea id="descProduto" rows="3" placeholder="Condições do item..." required></textarea></div>
-                <button type="submit" class="btn">Anunciar Produto</button>
-            </form>
-        </div>
 
-        <div>
-            <h3 style="margin-bottom: 15px;">Itens à Venda</h3>
-            <div class="vitrine" id="vitrineFeed"></div>
-        </div>
+        <!-- SEÇÃO 1: AJUDA DA COMUNIDADE (FÓRUM) -->
+        <section id="ajuda-comunidade" class="secao-layout" style="border-top: 4px solid var(--verde);">
+            <div class="formulario">
+                <h2 style="color: var(--verde-escuro);">💬 Nova Publicação</h2>
+                <form id="forumForm">
+                    <div class="form-group"><label>Seu Nome</label><input type="text" id="autor" placeholder="Ex: João Silva" required></div>
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select id="categoria" required>
+                            <option value="plantio">🌱 Cultivo Sustentável</option>
+                            <option value="praga">🐛 Problemas com Pragas</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Sua Pergunta</label><input type="text" id="titulo" placeholder="Ex: Como conter pulgões?" required></div>
+                    <div class="form-group"><label>Explicação Completa</label><textarea id="conteudo" rows="4" placeholder="Descreva os detalhes..." required></textarea></div>
+                    <button type="submit" class="btn-enviar v-cor">Publicar Pergunta</button>
+                </form>
+            </div>
+
+            <div class="coluna-lista">
+                <h3 style="color: var(--verde-escuro);">Perguntas da Comunidade</h3>
+                <div id="forumFeed"></div>
+            </div>
+        </section>
+
+        <hr class="divisor">
+
+        <!-- SEÇÃO 2: VENDAS E TROCAS -->
+        <section id="vendas-trocas" class="secao-layout" style="border-top: 4px solid var(--azul);">
+            <div class="formulario">
+                <h2 style="color: var(--azul);">🛒 Cadastrar Item</h2>
+                <form id="vendasForm">
+                    <div class="form-group"><label>Seu Nome</label><input type="text" id="vendedor" placeholder="Ex: Maria Souza" required></div>
+                    <div class="form-group"><label>Produto ou Insumo</label><input type="text" id="produto" placeholder="Ex: Sobra de adubo orgânico" required></div>
+                    <div class="form-group"><label>Preço ou Proposta de Troca</label><input type="text" id="preco" placeholder="Ex: 45,00 ou Troca" required></div>
+                    <div class="form-group"><label>WhatsApp (com DDD, apenas números)</label><input type="tel" id="whatsapp" placeholder="Ex: 11999999999" required></div>
+                    <div class="form-group"><label>Condições do Item</label><textarea id="descProduto" rows="3" placeholder="Detalhes sobre o produto..." required></textarea></div>
+                    <button type="submit" class="btn-enviar a-cor">Anunciar Desapego</button>
+                </form>
+            </div>
+
+            <div class="coluna-lista">
+                <h3 style="color: var(--azul);">Itens para Venda e Troca</h3>
+                <div class="vitrine-grid" id="vitrineFeed"></div>
+            </div>
+        </section>
+
     </div>
 
     <script>
-        let produtos = JSON.parse(localStorage.getItem('agro_produtos')) || [
-            { vendedor: "Roberto", produto: "Pulverizador Costal 20L", preco: "120,00", whatsapp: "11999999999", desc: "Equipamento revisado, ideal para pequenas hortas." }
+        // Banco de dados salvo localmente
+        let posts = JSON.parse(localStorage.getItem('agro_posts')) || [
+            { autor: "Carlos Mendes", categoria: "praga", titulo: "Lagartas atacando o Maracujá", conteudo: "Percebi pequenas lagartas escuras comendo os ramos novos. Algum manejo biológico recomendado para conter?" }
         ];
-        function renderVitrine() {
-            const v = document.getElementById('vitrineFeed'); v.innerHTML = '';
-            produtos.slice().reverse().forEach(item => {
-                v.innerHTML += `<div class="produto-card"><div><span style="font-size:0.8rem; color:#6c757d;">Vendedor: ${item.vendedor}</span><h4 style="margin: 5px 0;">${item.produto}</h4><p style="font-size:0.9rem; color:#5c636a;">${item.desc}</p></div><div><div class="preco">R$ ${item.preco}</div><a href="https://wa.me{item.whatsapp}?text=Olá" target="_blank" class="zap-btn">📱 Contatar</a></div></div>`;
+
+        let produtos = JSON.parse(localStorage.getItem('agro_produtos')) || [
+            { vendedor: "Roberto Silva", produto: "Pulverizador Costal 20L", preco: "120,00", whatsapp: "11999999999", desc: "Equipamento revisado, bicos limpos, ideal para hortas." }
+        ];
+
+        function renderizarForum() {
+            const feed = document.getElementById('forumFeed');
+            feed.innerHTML = '';
+            posts.slice().reverse().forEach(post => {
+                const isPraga = post.categoria === 'praga';
+                feed.innerHTML += `
+                    <div class="card-topico ${isPraga ? 'tag-praga' : ''}">
+                        <div class="card-topico-header">
+                            <span>Por: <strong>${post.autor}</strong></span>
+                            <span class="badge ${isPraga ? 'bg-praga' : 'bg-plantio'}">${isPraga ? '🐛 Praga' : '🌱 Cultivo'}</span>
+                        </div>
+                        <h4 style="font-weight:700;">${post.titulo}</h4>
+                        <p style="color:#4a4a4a; font-size:0.95rem; margin-top:6px; line-height:1.5;">${post.conteudo}</p>
+                    </div>`;
             });
         }
-        document.getElementById('vendasForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            produtos.push({ vendedor: document.getElementById('vendedor').value, produto: document.getElementById('produto').value, preco: document.getElementById('preco').value, whatsapp: document.getElementById('whatsapp').value.replace(/\D/g, ''), desc: document.getElementById('descProduto').value });
-            localStorage.setItem('agro_produtos', JSON.stringify(produtos)); renderVitrine(); this.reset(); alert("Anúncio publicado!");
-        });
-        renderVitrine();
-    </script>
-</body>
-</html>
+
+        function renderizarVitrine() {
 
 
 
