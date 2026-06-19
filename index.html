@@ -3,279 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho Conecta 2026</title>
+    <title>AgroForte: Comunidade & Desapego</title>
     <style>
-        /* Configurações Gerais */
+        :root {
+            --verde-forte: #2e7d32;
+            --verde-claro: #81c784;
+            --solo: #f4f6f4;
+            --texto-escuro: #2c3e50;
+            --branco: #ffffff;
+            --laranja-alerta: #e67e22;
+            --azul-comercio: #2980b9;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
-            background-color: #f7faf7;
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--solo);
+            color: var(--texto-escuro);
         }
 
-        /* Cabeçalho / Menu */
         header {
-            background-color: #1b5e20;
-            color: white;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        header nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-        }
-
-        header nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Seção Principal (Hero) */
-        .hero {
-            background: linear-gradient(rgba(27, 94, 32, 0.8), rgba(46, 125, 50, 0.9)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            color: white;
+            background: linear-gradient(135deg, var(--verde-forte), #1b5e20);
+            color: var(--branco);
+            padding: 40px 20px;
             text-align: center;
-            padding: 100px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
+        header h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* Abas de Navegação */
+        .abas {
+            display: flex;
+            justify-content: center;
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             margin-bottom: 20px;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #ffb300;
-            color: #1b5e20;
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #ffa000;
-        }
-
-        /* Seção de Recursos (Cards) */
-        .recursos {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .recursos h2 {
-            font-size: 2rem;
-            color: #1b5e20;
-            margin-bottom: 40px;
-        }
-
-        .grid-recursos {
-            display: flex;
-            gap: 20px;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: white;
+        .aba-btn {
             flex: 1;
-            min-width: 280px;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 5px solid #4caf50;
-        }
-
-        .card h3 {
-            color: #2e7d32;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        /* Rodapé */
-        footer {
-            background-color: #2e7d32;
-            color: white;
+            max-width: 300px;
+            padding: 15px;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .aba-btn.ativa {
+            color: var(--verde-forte);
+            border-bottom-color: var(--verde-forte);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .conteudo-secao {
+            display: none;
+        }
+
+        .conteudo-secao.ativa {
+            display: block;
+        }
+
+        /* Formulários */
+        .box-publicar {
+            background: var(--branco);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .box-publicar h2 {
+            font-size: 1.4rem;
+            color: var(--verde-forte);
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
             font-size: 0.9rem;
         }
 
-        /* Responsividade para Celular */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .grid-recursos {
-                flex-direction: column;
-            }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
         }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--verde-claro);
+        }
+
+        .btn {
+            background-color: var(--verde-forte);
+            color: var(--branco);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover { background-color: #1b5e20; }
+        .btn-venda { background-color: var(--azul-comercio); }
+        .btn-venda:hover { background-color: #1f618d; }
+
+        /* Estilos do Fórum */
+        .feed { display: flex; flex-direction: column; gap: 20px; }
+        
+        .topico {
+            background: var(--branco);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--verde-forte);
+        }
+
+        .topico.tag-praga { border-left-color: var(--laranja-alerta); }
+        
+        .topico-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .bg-praga { background-color: var(--laranja-alerta); }
+        .bg-plantio { background-color: var(--verde-forte); }
+        .autor { font-size: 0.85rem; color: #7f8c8d; }
+
+        /* Estilos do Marketplace (Vendas) */
+        .vitrine {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .produto-card {
+            background: var(--branco);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 5px solid var(--azul-comercio);
+        }
+
+        .preco {
+            font-size: 1.4rem;
+            color: var(--azul-comercio);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .zap-btn {
+            background-color: #25d366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .zap-btn:hover { background-color: #128c7e; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">🌾 Agrinho Conecta</div>
-        <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#recursos">Funcionalidades</a>
-        </nav>
+        <h1>🌱 AgroForte Sustentável</h1>
+        <p>Tire dúvidas sobre cultivo e negocie itens que você não usa mais!</p>
     </header>
 
-    <section class="hero">
-        <h1>Agro Forte, Futuro Sustentável</h1>
-        <p>Conheça o projeto de aplicativo que conecta agricultores para trocar dicas ecológicas, economizar recursos e fortalecer a produção em equilíbrio com o meio ambiente.</p>
-        <a href="#sobre" class="btn">Ver Detalhes do Projeto</a>
-    </section>
+    <!-- Menu de Abas -->
+    <div class="abas">
+        <button class="aba-btn ativa" onclick="mudarAba('forum')">💬 Dúvidas e Pragas</button>
+        <button class="aba-btn" onclick="mudarAba('classificados')">🛒 Desapego / Vendas</button>
+    </div>
 
-    <section class="recursos" id="recursos">
-        <h2>Como o Aplicativo Ajuda o Campo?</h2>
+    <div class="container">
         
-        <div class="grid-recursos">
-            <div class="card">
-                <h3>Comunidade Unida</h3>
-                <p>Um fórum prático onde pequenos e grandes produtores rurais compartilham soluções que deram certo nas suas propriedades.</p>
+        <!-- SEÇÃO 1: FÓRUM -->
+        <div id="secao-forum" class="conteudo-secao ativa">
+            <div class="box-publicar">
+                <h2>💬 Nova Dúvida ou Dica</h2>
+                <form id="forumForm">
+                    <div class="form-group">
+                        <label for="autor">Seu Nome:</label>
+                        <input type="text" id="autor" placeholder="Ex: João Silva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoria:</label>
+                        <select id="categoria" required>
+                            <option value="plantio">🌱 Como Plantar / Cultivo</option>
+                            <option value="praga">🐛 Combate a Pragas e Doenças</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="titulo">Assunto / Pergunta:</label>
+                        <input type="text" id="titulo" placeholder="Ex: Como acabar com pulgão na couve?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="conteudo">Detalhes do problema:</label>
+                        <textarea id="conteudo" placeholder="Descreva o que está acontecendo..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Publicar no Fórum</button>
+                </form>
             </div>
 
-            <div class="card">
-                <h3>Foco Ecológico</h3>
-                <p>Espaço dedicado a ideias de compostagem orgânica, proteção de solos, manejo de pragas sem químicos e preservação de nascentes.</p>
-            </div>
-
-            <div class="card">
-                <h3>Uso Inteligente da Água</h3>
-                <p>Dicas e técnicas compartilhadas para captação de água da chuva e sistemas de irrigação que evitam o desperdício.</p>
-            </div>
+            <h3 style="margin-bottom: 15px; color: var(--verde-forte);">Perguntas da Comunidade</h3>
+            <div class="feed" id="forumFeed"></div>
         </div>
-    </section>
 
-    <footer>
-        <p>&copy; 2026 Agrinho Conecta. Desenvolvido para o Concurso Agrinho.</p>
-    </footer>
+        <!-- SEÇÃO 2: CLASSIFICADOS / VENDAS -->
+        <div id="secao-classificados" class="conteudo-secao">
+            <div class="box-publicar" style="border-top: 4px solid var(--azul-comercio);">
+                <h2 style="color: var(--azul-comercio);">🛒 Anunciar um Desapego</h2>
+                <form id="vendasForm">
+                    <div class="form-group">
+                        <label for="vendedor">Seu Nome:</label>
+                        <input type="text" id="vendedor" placeholder="Ex: Maria Souza" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="produto">Item para Vender ou Trocar:</label>
+                        <input type="text" id="produto" placeholder="Ex: Enxada antiga / Sobras de adubo orgânico" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preco">Preço (R$):</label>
+                        <input type="text" id="preco" placeholder="Ex: 45,00 (ou digite Troca)" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp">Seu Celular / WhatsApp (Apenas números com DDD):</label>
+                        <input type="tel" id="whatsapp" placeholder="Ex: 11999999999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descProduto">Condição do Item / Detalhes:</label>
+                        <textarea id="descProduto" placeholder="Descreva o estado do produto e região de entrega..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-venda">Colocar à Venda</button>
+                </form>
+            </div>
 
-</body><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho Conecta 2026 - Dicas</title>
-    <style>
-        /* Configurações Gerais */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
+            <h3 style="margin-bottom: 15px; color: var(--azul-comercio);">Itens Disponíveis</h3>
+            <div class="vitrine" id="vitrineFeed"></div>
+        </div>
 
-        body {
-            background-color: #f4f7f4;
-            color: #333;
-            line-height: 1.6;
-        }
+    </div>
 
-        /* Cabeçalho / Menu */
-        header {
-            background-color: #1b5e20;
-            color: white;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        header nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-        }
-
-        header nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Seção Principal (Hero) */
-        .hero {
-            background: linear-gradient(rgba(27, 94, 32, 0.85), rgba(46, 125, 50, 0.9)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Seção de Dicas Compartilhadas */
-        .Mural-dicas {
-            padding: 60px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .Mural-dicas h2 {
-            font-size: 2rem;
-            color: #1b5e20;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .Mural-dicas .subtitulo {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-        
-</html>
+    <script>
+        // --- GERENCIAMENTO DE ABAS ---
+        function mudarAba(aba) {
+            document.querySelectorAll('.aba-btn').forEach(btn => btn.classList.remove('ativa'));
